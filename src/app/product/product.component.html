@@ -1,0 +1,54 @@
+<br><br><br><br><br>
+<div class="container">
+
+    <div class="row">
+        <div class="col-8">
+            <div  >
+                <img  style="width: 500px; height: 500px;" src="assets/images/{{product.image}}" alt="{{product.nom}}">
+                
+            </div>
+   
+        </div>
+        <div class="col-4">
+            <h3 style="margin-bottom:50px ;"><strong>{{product.nom}}</strong></h3>
+            <p><strong>{{product.prix}} DH</strong></p>
+            <p>{{product.description}} </p>
+            <div >
+                Quantité
+                
+                <input type="number" value="1" [formControl]="quantite"style="width: 50px; margin-left: 10px;"> 
+                    
+                   
+            </div>
+            <br>
+            <button (click)="_addItemToCart(product.id)" routerlinkActive="active" class="btn"style="margin-right:20px;">Ajouter au Panier</button><a href=""> 
+                <img src="https://img.icons8.com/material-outlined/24/000000/like--v1.png"/></a><br>
+
+            
+
+            <!-- <table style="margin-top:20px;" class="table">
+
+                <thead>
+                    <tr>
+                        <td>Commentaire</td>
+                    </tr>
+                    
+                </thead>
+                <tbody>
+                    <tr *ngFor="let commentaire of c">
+                        <td >{{commentaire.nom}}</td>
+                        <td>{{commentaire.commentaire}}</td>
+                        
+                    </tr>
+                </tbody>
+                
+                
+            </table> -->
+               
+            </div>
+
+        </div>
+    </div>
+
+
+
