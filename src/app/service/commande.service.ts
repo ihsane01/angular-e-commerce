@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,5 +14,16 @@ export class CommandeService {
 
   }
   
+listecommande(id:any ){
+  return this.httpClient.get(`${this._url+"showcommande"}/${id}`);
 
+}
+liste(){
+  return this.httpClient.get(this._url+"listecommande");
+
+}
+
+
+updatecommande(product:any,id:any):Observable<any>{
+  return this.httpClient.post<any>(`${this._url+"updatecommande"}/${id}`,product);}
 }

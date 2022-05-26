@@ -84,7 +84,7 @@ ul li a:hover{
 .content .cn{
     width: 160px;
     height: 40px;
-    background:#1d2d4e;
+    background:rgb(5, 17, 51);
     border: none;
     margin-bottom: 10px;
     margin-left: 20px;
@@ -92,12 +92,11 @@ ul li a:hover{
     border-radius: 10px;
     cursor: pointer;
     transition: .4s ease;
-    
 }
 
 .content .cn a{
     text-decoration: none;
-    color: #000;
+    color: rgb(255, 255, 255);
     transition: .3s ease;
 }
 
@@ -161,7 +160,7 @@ form input:focus{
 .btnn{
     width: 200px;
     height: 40px;
-    background:#1d2d4e;
+    background:rgb(5, 17, 51);
     border: none;
     margin-top: 30px;
     font-size: 18px;

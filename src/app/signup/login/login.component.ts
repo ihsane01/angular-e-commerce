@@ -34,7 +34,7 @@ this.toastr.success('welcom!');
 if(this.selecteduser==2)
 this.router.navigateByUrl('Products')
 else{
-  this.router.navigateByUrl('Home')
+  this.router.navigateByUrl('')
 
 }}
 else{

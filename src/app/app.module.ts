@@ -7,7 +7,7 @@ import{HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
  import { ModalModule } from 'ngx-bootstrap/modal';
-
+ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LayoutComponent } from './component/layout/layout.component';
 import { FormsModule } from '@angular/forms';
@@ -29,11 +29,13 @@ import {MatIconModule} from '@angular/material/icon';
 import { AllProductsComponent } from './component/all-products/all-products.component';
 import { CatNavComponent } from './component/cat-nav/cat-nav.component';
 import { PanierComponent } from './component/panier/panier.component';
-
+import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
-
+import {MatBadgeModule} from '@angular/material/badge';
 import { ToastrModule } from 'ngx-toastr';
 import { CommandeComponent } from './component/commande/commande.component';
+import { NavadminComponent } from './component/navadmin/navadmin.component';
+import { UserComponent } from './component/user/user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +54,8 @@ import { CommandeComponent } from './component/commande/commande.component';
     CatNavComponent,
     PanierComponent,
     CommandeComponent,
+    NavadminComponent,
+    UserComponent,
     
     
   ],
@@ -77,8 +81,10 @@ import { CommandeComponent } from './component/commande/commande.component';
       preventDuplicates:true,
 
     }), 
-    MatButtonModule
-
+    MatButtonModule,
+    MatBadgeModule,
+    NgbModule,
+    MatDividerModule
   ],
   providers: [DataService,AuthGuard, 
   {
@@ -86,7 +92,12 @@ import { CommandeComponent } from './component/commande/commande.component';
     useClass:TokenInterceptorService,
     multi:true
 
-  },HasRoleGuard],
+  },HasRoleGuard,
+],
+
+
+
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

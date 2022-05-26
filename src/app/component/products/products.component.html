@@ -1,15 +1,12 @@
-<br>
-<br>
-<br>
-<br>
-
-
 <div class ="container">
+  <app-navadmin></app-navadmin>
+<br><br><br>
+
 <div style="text-align:center;">
-  <button (click)="clickaddproduct()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add New</button>
+  <button (click)="clickaddproduct()" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#pro">Add New</button>
 </div>
   <br>
-  <table class="table">
+  <table style="margin-left: 50px ;margin-right: 20;" class="table">
       <thead class="thead-dark">
           <tr>
               <th scope="col"> #</th>
@@ -35,7 +32,7 @@
 
               <td> {{prod.id_cat}}</td>
               <td><button type="button" (click)="onedit(prod)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-info" >Edit</button>
-               <td>   <button type="button" class="btn btn-dark" (click)="delete(prod.id)">Delete</button></td>
+               <td><button type="button" class="btn btn-dark" (click)="delete(prod.id)">Delete</button></td>
           </tr>
       </tbody>
   </table>
@@ -43,7 +40,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: none;">
+<div class="modal fade" id="pro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: none;">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

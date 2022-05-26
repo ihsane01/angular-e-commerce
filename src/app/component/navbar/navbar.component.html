@@ -1,18 +1,7 @@
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<nav class="navbar navbar-expand-lg  navbar-dark grey">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Home</a>
-    <ul class="navbar-nav">
-    <a href=""></a>
-  <a class="navbar-link" *ngIf="islogin()"  routerLink="sigup/login" routerlinkActive="active" (click)="logout()" style="color:white;" > <i
-    class="fas fa-sign-in-alt"></i>
-  logout</a> -->
-      <!-- <a class="navbar-link" *ngIf="islogin()"   routerLink="sigup/login" routerlinkActive="active" (click)="logout()">Logout</a> -->
-     <!-- </ul>
-          </div> -->
+
          
       
-          <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-1">
+          <nav class="navbar navbar-expand-lg navbar-dark bg- py-1">
             <div class="container">
               <img src="assets/images/loogo.png" height="60px" alt="">
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,20 +11,19 @@
                 <ul class="navbar-nav ml-auto">
                  
                   <li class="nav-item">
-                    <a class="nav-link" href="#" > <mat-icon>home</mat-icon>
-                    </a>
+                    <a class="nav-link" routerLink=""  >  <mat-icon>home</mat-icon></a>
                   </li>
                 
                   <li class="nav-item">
-                    <a class="nav-link" ><mat-icon>favorite_border</mat-icon></a>
+                    <a (click)="listelike()"  *ngIf="admin"  data-bs-toggle="modal" data-bs-target="#like" class="nav-link">
+                      <mat-icon>favorite_border</mat-icon></a>
+                    
+                  <li class="nav-item">
+                    <a  *ngIf="admin"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="nav-link"><mat-icon>notifications_none</mat-icon></a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link"><mat-icon>notifications_none</mat-icon></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link"   >
-
-                    <mat-icon routerLink="panier">add_shopping_cart</mat-icon></a>
+                    <a class="nav-link"  >
+                    <mat-icon  *ngIf="admin" routerLink="panier">add_shopping_cart</mat-icon></a>
                   </li>
 
 
@@ -50,34 +38,83 @@
               </div>
             </div>
           </nav>
-<br><br>
-<br><br>
-<br><br>
+
   <!-- Large modal -->
-  <button  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add New</button>
-<br>
-<br>
-<br>
-<br>
+
+
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: none;">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div  class="modal-dialog modal-dialog-centered" >
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">mes commandes</h5>
         <button type="button" id="cancel" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div> 
       <div class="modal-body">
 
 
-        <div class="notifi-item">
-          <img src="a"lt="img">
-          <div class="text">
-             <h4>John Doe</h4>
-             <p>@lorem ipsum dolor sit amet</p>
+      
+            <table class="table">
+
+              <thead>
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Ordre</th>
+                  <th scope="col">Destination</th>
+                  <th scope="col">Etat</th>
+                  <th scope="col">Total </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let commande of commandesliste" >
+                  <td>{{commande.created_at}}</td>
+                  <td>{{commande.id}}</td>
+                  <td>{{commande.destination}}</td>
+                  <td *ngIf="commande.etat==0"><strong>On traitement</strong></td>
+                  <td *ngIf="commande.etat!=0"><strong>Success</strong></td>
+                  <td >{{commande.total}}</td>
+                </tr>
+               
+              </tbody>
+             
+            </table>
             </div> 
         </div>
       </div>
     </div>
-  </div>
-</div>
+
+
+
+
+
+<!-- like -->
+<div class="modal fade" id="like" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div  class="modal-dialog modal-dialog-centered" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Mes favorites</h5>
+        <button type="button" id="cancel" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div> 
+      <div class="modal-body">
+
+
+      
+            <table class="table">
+
+              
+              <tbody>
+                <tr *ngFor="let like of likeliste" >
+                 <td> <img src="assets/images/{{like.image}}" height="100px" > </td>                
+                    <td>{{like.nom}}</td>
+                  <td>{{like.prix}}</td>
+                 
+                
+                </tr>
+               
+              </tbody>
+             
+            </table>
+            </div> 
+        </div>
+      </div>
+    </div>

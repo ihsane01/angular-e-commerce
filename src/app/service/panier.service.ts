@@ -13,20 +13,7 @@ public cartItemList : any =[]
 
 private _url='http://127.0.0.1:8000/api/'
 productlist=new BehaviorSubject<any>([])
-//   constructor(private http:HttpClient ) { }
-//   getproductdata(){
-//     return this.productlist.asObservable();
 
-//   }
-//   addpanier(idpro:any,id:any):Observable<any>{
-//     return this.http.post<any>(this._url+"addtopanier",idpro,id);
-
-//   }
-//   listepanier(id:any)
-// {
-//   return this.http.get<any>(this._url+"listepanier",id);
- 
-// }
 
 constructor(private http: HttpClient) {}
 

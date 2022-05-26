@@ -3,5 +3,4 @@ export interface Commentaire {
     nom:string;
     id_produit:number;
     commentaire:string;
-    image:string;
 }

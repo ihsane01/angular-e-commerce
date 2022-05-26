@@ -24,6 +24,10 @@ private _url='http://127.0.0.1:8000/api/'
 
      return this.httpClient.get<IProducts[]>(this._url+"Products");
    }
+   users():Observable<IProducts[]>{
+
+     return this.httpClient.get<IProducts[]>(this._url+"users");
+   }
    add (product:IProducts):Observable<IProducts>
 {
   return this.httpClient.post<IProducts>(this._url+"Addproduct",product);
@@ -38,6 +42,9 @@ delete(id:any){
 
 }
   
+
+
+
 
 
 
@@ -75,15 +82,17 @@ public ProductById(id:any){
   return this.httpClient.get('http://127.0.0.1:8000/api/Product/'+id)
 }
 
-public AddDataComment(commentaire:Commentaire, id:any):Observable<Commentaire>
+public AddDataComment(payload:any)
 {
-  return this.httpClient.post<Commentaire>('http://127.0.0.1:8000/api/AddComment/'+id,commentaire);
+  return this.httpClient.post('http://127.0.0.1:8000/api/AddComment',payload);
 }
 
 public GetDataComments(id:any):Observable<Commentaire[]>{
 
   return this.httpClient.get<Commentaire[]>('http://127.0.0.1:8000/api/Comments/'+id);
 }
+
+
 
 
 

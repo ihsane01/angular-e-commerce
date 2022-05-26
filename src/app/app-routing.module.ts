@@ -14,6 +14,8 @@ import { UnauthGuard } from './unauth.guard';
 import { AllProductsComponent } from './component/all-products/all-products.component';
 import { PanierComponent } from './component/panier/panier.component';
 import { CommandeComponent } from './component/commande/commande.component';
+import { NavadminComponent } from './component/navadmin/navadmin.component';
+import { UserComponent } from './component/user/user.component';
 const routes: Routes = [
 
   {path:'Products' ,component:ProductsComponent,canActivate:[AuthGuard,HasRoleGuard],
@@ -21,15 +23,16 @@ data:{
   expectedRoles: [1]
 } },
   {path:'categories' ,component:CategorieComponent,canActivate:[AuthGuard,HasRoleGuard], },
-  {path:'Home' ,component:HomeComponent },
+  {path:'' ,component:HomeComponent,pathMatch: 'full'},
+  {path:'admin' ,component:NavadminComponent ,canActivate:[AuthGuard,HasRoleGuard]},
  
  { path:'login', component:LoginComponent,canActivate:[UnauthGuard],},
  { path:'panier', component:PanierComponent,canActivate:[AuthGuard],},
- { path:'commande', component:CommandeComponent,canActivate:[AuthGuard],},
+ { path:'commande', component:CommandeComponent,canActivate:[AuthGuard,HasRoleGuard],},
+ { path:'users', component:UserComponent,canActivate:[AuthGuard,HasRoleGuard],},
   // {path:'sigup',component:SignupComponent,canActivate:[UnauthGuard],
  { path:'register', component:RegisterComponent,canActivate:[UnauthGuard],},
   
-  {path:'',redirectTo:'login',pathMatch:'full'},
   {path: 'category/:id', component: ProductsbycatComponent},
   {path: 'All', component: AllProductsComponent},
   {path: 'product/:id' , component: ProductComponent},

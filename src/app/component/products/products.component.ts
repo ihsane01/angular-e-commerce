@@ -58,13 +58,7 @@ modalRef?  : BsModalRef;
     if(product){
       this.modaltitle='EDIT PRODUCT';
       this.buttontitle='Update';
-      // this.selectedProduct=product;
-      // this.nom.setValue(product.nom);
-      // this.description.setValue(product.description);
-      // this.quantite.setValue(product.quantite);
-      // this.prix.setValue(product.prix);
-      // this.image.setValue(product.image);
-      // this.id_cat.setValue(product.id_cat);
+     
     }else{
       this.modaltitle='ADD PRODUCT';
       this.buttontitle='save';
@@ -160,9 +154,6 @@ myFormData.append('quantite', this.quantite);
 myFormData.append('prix', this.prix);
 myFormData.append('id_cat', this.id_cat);
 this.dataservise.update(myFormData,this.id_updated).subscribe(data=>{
-// this.http.put('http://127.0.0.1:8000/api/Addproduct', myFormData, {
-// headers: headers
-// }).subscribe(data => {
 console.log(data);
 this.getProductData();
 this.myForm.reset( )
@@ -178,37 +169,6 @@ clickaddproduct(){
 }
 
 
-// }
-// save(){
-//   if(!this.description.value||!this.nom.value||!this.quantite.value|| !this.prix.value|| !this.image.value|| !this.id_cat.value){
-//   this.showError=true;
-//   return;
-// }
-  
-//   this.selectedProduct.nom=this.nom.value;
-//   this.selectedProduct.description=this.description.value;
-//   this.selectedProduct.quantite=this.quantite.value;
-//   this.selectedProduct.prix=this.prix.value;
-//   this.selectedProduct.image=this.image.value;
-//   this.selectedProduct.id_cat=this.id_cat.value;
-  
-  
-//   if(this.buttontitle=='Update'){
-// this.dataservise.update(this.selectedProduct).subscribe(Response=>{
-//   this.getProductData();
-//  this.reset();
-//  this.showError=false;
-// this.modalRef?.hide();
-// })
-// }else{
-//     this.dataservise.add(this.selectedProduct).subscribe(Response=>{
-//       this.getProductData();
-//     this.reset();
-//     this.showError=false;
-//     this.modalRef?.hide();})
-
-//   }
-// }
 reset(){
   this.description.reset();
   this.nom.reset();

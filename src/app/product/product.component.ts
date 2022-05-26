@@ -5,6 +5,7 @@ import { IProducts } from '../component/products/products';
 import { Commentaire } from '../models/commentaire';
 import { DataService } from '../service/data.service';
 import { PanierService } from '../service/panier.service';
+import { ProductService } from '../service/product.service';
 
 @Component({
   selector: 'app-product',
@@ -19,12 +20,21 @@ export class ProductComponent implements OnInit {
   public commentaire=new FormControl('',Validators.required);
   public id_client=new FormControl('',Validators.required);
   public id_produit=new FormControl('',Validators.required);
-
+  isLiked = null;
   id:any;
   data:any;
   public c = []  as any;
   products: Array<object> = [];
-  constructor(private activatedRoute: ActivatedRoute,private dataService: DataService,private panier:PanierService,private router: Router) { }
+  constructor(private activatedRoute: ActivatedRoute,private dataService: DataService,private panier:PanierService,private router: Router,private productService:ProductService) { }
+
+
+
+
+
+
+  data1:Array<any>;
+  totalRecords:number=1;
+  page:number=1;
 
   
   ngOnInit(): void {
@@ -32,21 +42,19 @@ export class ProductComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.params['id'];
 
     this.getProduct();
-    this.addComment();
     this.getComments();
+    this.productService.isLikedProduct(this.id).subscribe((res:any) => { this.isLiked = res.state});
   }
-
+  toggleLike(id: any) {
+    this.isLiked = null;
+   this.productService.likeProduct(this.id).subscribe();
+   this.productService.isLikedProduct(this.id).subscribe((res:any) => { this.isLiked = res.state});
+ }
   getProduct(){
     this.dataService.ProductById(this.id).subscribe(res => { this.data = res; return this.product = this.data})
   }
 
-  addComment(){
-    this.dataService.AddDataComment(this.comment,this.id).subscribe(res => { return console.log(res)})
-  }
-
-  getComments(){
-    this.dataService.GetDataComments(this.id).subscribe(res => {  this.c = res;})
-  }
+ 
 
   
   _addItemToCart( id:any): void {
@@ -57,9 +65,31 @@ export class ProductComponent implements OnInit {
     };
     this.panier.addToCart(payload).subscribe(() => {
       
-      alert('Product Added');
+  
       this.router.navigateByUrl('/panier')
 
 
     });
-}}
+
+  }
+
+
+  getComments(){
+    this.dataService.GetDataComments(this.id).subscribe((data) => {  
+      // this.c = res;
+      this.data1 = data;
+      this.totalRecords = data.length;
+    })
+  }
+
+  addComment(id:any):void{
+    let payload = {
+      productId:id,
+      commentaire:this.commentaire.value,
+      id_client:localStorage.getItem('id'),
+    };
+    this.dataService.AddDataComment(payload).subscribe(res => { return this.getComments();
+    });
+  }
+  
+}

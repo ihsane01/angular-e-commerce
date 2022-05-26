@@ -63,21 +63,21 @@ vider(){
   this.panierservice.emptyCart( this.id).subscribe( 
     
       )
-      this.toastr.success('Hello world!', 'Toastr fun!');
+      this.toastr.info('votre panier est vide');
+      this._getCart();
 }
 addcommande(){
   let produits = {
     products:this.products,
     id_client:localStorage.getItem('id'),
-    total:this.grandTotal
+    total:this.grandTotal+this.livraison
     
   };
 
   this.commandeservice. addcommandes(produits).subscribe((response:any)=>{
   
-    alert('commande Added');
     this.router.navigateByUrl('panier')
-
+    this.vider()
   })
 }
 
